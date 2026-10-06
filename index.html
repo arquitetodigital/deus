@@ -1557,12 +1557,11 @@ body {
 
 
 <script>
-// --- POPUP DE UPGRADE E INTENÇÃO DE SAÍDA (EXIT-INTENT) ---
+// --- POPUP DE UPGRADE EXCLUSIVO NO CLIQUE DA OFERTA 1 ---
 (function() {
   var popup = document.getElementById('upgrade-popup');
   var closeBtn = document.getElementById('upgrade-close-btn');
   var btnDigital = document.getElementById('btn-digital-990');
-  var hasShownExit = false;
 
   window.openUpgradePopup = function() {
     if (popup) popup.classList.add('active');
@@ -1587,25 +1586,12 @@ body {
     });
   }
 
-  // Intenção de saída para Desktop (movimento do mouse para o topo da tela)
-  document.addEventListener('mouseleave', function(e) {
-    if (e.clientY <= 15 && !hasShownExit) {
-      hasShownExit = true;
-      window.openUpgradePopup();
+  // Tecla ESC fecha o popup
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && popup && popup.classList.contains('active')) {
+      window.closeUpgradePopup();
     }
   });
-
-  // Interceptação de saída / voltar (Mobile e Popstate)
-  try {
-    history.pushState({ page: 1 }, '', '');
-    window.addEventListener('popstate', function(event) {
-      if (!hasShownExit) {
-        hasShownExit = true;
-        window.openUpgradePopup();
-        history.pushState({ page: 2 }, '', '');
-      }
-    });
-  } catch(e) {}
 })();
 </script>
 

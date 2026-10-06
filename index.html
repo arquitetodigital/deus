@@ -964,6 +964,24 @@ body {
 }
 
 </style>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1622256505781426');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1622256505781426&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -978,10 +996,9 @@ body {
   <div class="container hero-grid">
     <div class="hero-copy">
       <div class="kicker">DEUS NO MEU ORÇAMENTO</div>
-      <h1>Dinheiro com<br><span>propósito divino.</span></h1>
+      <h1>Coloque suas dívidas em ordem<br><span>sem deixar sua fé de fora.</span></h1>
       <p class="hero-sub">
-        O que Deus realmente diz sobre dinheiro, trabalho, dívidas e prosperidade,
-        transformado em um manual prático para a sua vida financeira real.
+        Um guia prático de 7 dias para você enxergar suas dívidas, organizar seus gastos e começar um plano financeiro baseado em princípios bíblicos.
       </p>
 
       <div class="hero-tags">
@@ -991,11 +1008,11 @@ body {
         <span>Exercícios</span>
       </div>
 
-      <a href="#precos" class="btn btn-gold">QUERO O GUIA DE 7 DIAS</a>
+      <a href="#precos" class="btn btn-gold">QUERO COMEÇAR A ORGANIZAR MINHAS FINANÇAS</a>
     </div>
 
     <div class="hero-cover">
-      <img src="capa.webp" alt="Capa da Bíblia Financeira">
+      <img src="capa.webp" alt="Capa Deus no Meu Orçamento">
     </div>
   </div>
 </section>
@@ -1076,7 +1093,7 @@ body {
 <section class="section">
   <div class="container intro-grid">
     <div class="intro-cover">
-      <img src="capa2.webp" alt="Bíblia Financeira">
+      <img src="capa2.webp" alt="Deus no Meu Orçamento - Guia Prático de 7 Dias">
     </div>
 
     <div class="intro-copy">
@@ -1365,7 +1382,7 @@ body {
           <li>Plano prático de 90 dias</li>
         </ul>
 
-        <a href="https://go.pepperpay.com.br/zflrt" id="btn-digital-990" class="btn btn-gold">QUERO A VERSÃO DIGITAL</a>
+        <a href="javascript:void(0);" id="btn-digital-990" class="btn btn-gold" role="button">QUERO A VERSÃO DIGITAL</a>
       </article>
 
       <article class="price-card featured">
@@ -1384,7 +1401,7 @@ body {
           <li>Plano estruturado de 90 dias de restauração</li>
         </ul>
 
-        <a href="#CHECKOUT_19_90_AQUI" class="btn btn-gold">QUERO A VERSÃO COMPLETA</a>
+        <a href="https://go.pepperpay.com.br/zflrt?oferta=completa_1990" class="btn btn-gold">QUERO A VERSÃO COMPLETA</a>
       </article>
     
     <div class="trust-badges-bar">
@@ -1503,7 +1520,7 @@ body {
       <div class="new">R$ 17<small>,90</small></div>
     </div>
 
-    <a href="#CHECKOUT_17_90_AQUI" id="modal-cta-1790" class="upgrade-btn-yes">
+    <a href="https://go.pepperpay.com.br/zflrt?oferta=completa_1790" id="modal-cta-1790" class="upgrade-btn-yes">
       SIM! QUERO A VERSÃO COMPLETA POR R$ 17,90
     </a>
 
@@ -1522,7 +1539,9 @@ body {
   if (btnDigital && popup) {
     btnDigital.addEventListener('click', function(e) {
       e.preventDefault();
+      e.stopPropagation();
       popup.classList.add('active');
+      return false;
     });
   }
 
@@ -1566,6 +1585,88 @@ body {
   }
   updateTimer();
   setInterval(updateTimer, 1000);
+})();
+</script>
+
+<script>
+(function() {
+  // --- CAPTURA E REPASSE DE UTMS, FBCLID, _FBP, _FBC ---
+  var params = new URLSearchParams(window.location.search);
+  var trackingKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'src', 'sck', 'fbclid'];
+  var storedParams = {};
+
+  // Recupera do storage ou lê da URL
+  trackingKeys.forEach(function(key) {
+    var val = params.get(key);
+    if (val) {
+      storedParams[key] = val;
+      try { sessionStorage.setItem('dno_' + key, val); } catch(e) {}
+    } else {
+      try {
+        var saved = sessionStorage.getItem('dno_' + key);
+        if (saved) storedParams[key] = saved;
+      } catch(e) {}
+    }
+  });
+
+  // Captura / constrói _fbc a partir de fbclid se existir
+  function getCookie(name) {
+    var m = document.cookie.match(new RegExp('(^|; )' + name + '=([^;]+)'));
+    return m ? m[2] : null;
+  }
+  var fbp = getCookie('_fbp');
+  var fbc = getCookie('_fbc');
+  if (!fbc && storedParams['fbclid']) {
+    fbc = 'fb.1.' + (+new Date()) + '.' + storedParams['fbclid'];
+  }
+  if (fbp) storedParams['_fbp'] = fbp;
+  if (fbc) storedParams['_fbc'] = fbc;
+
+  // Garante sck / src
+  if (!storedParams['sck'] && storedParams['utm_campaign']) {
+    storedParams['sck'] = storedParams['utm_campaign'];
+  }
+  if (!storedParams['src'] && storedParams['utm_source']) {
+    storedParams['src'] = storedParams['utm_source'];
+  }
+
+  // Decora links de checkout ao clicar ou carregar
+  function decorateUrl(urlStr) {
+    if (!urlStr || urlStr.indexOf('http') !== 0) return urlStr;
+    try {
+      var u = new URL(urlStr);
+      Object.keys(storedParams).forEach(function(k) {
+        if (!u.searchParams.has(k) && storedParams[k]) {
+          u.searchParams.set(k, storedParams[k]);
+        }
+      });
+      return u.toString();
+    } catch(e) {
+      return urlStr;
+    }
+  }
+
+  function decorateAllCheckoutLinks() {
+    var links = document.querySelectorAll('a[href]');
+    links.forEach(function(a) {
+      var href = a.getAttribute('href');
+      if (href && (href.indexOf('pepperpay.com.br') !== -1 || href.indexOf('cakto.com.br') !== -1 || href.indexOf('kiwify.com.br') !== -1 || href.indexOf('hotmart.com') !== -1)) {
+        a.href = decorateUrl(href);
+      }
+    });
+  }
+
+  // Executa na carga e em cliques
+  decorateAllCheckoutLinks();
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (href && (href.indexOf('pepperpay.com.br') !== -1 || href.indexOf('cakto.com.br') !== -1 || href.indexOf('kiwify.com.br') !== -1 || href.indexOf('hotmart.com') !== -1)) {
+      a.href = decorateUrl(a.href);
+      // NENHUM InitiateCheckout aqui: tracking de IC fica 100% nativo no checkout (Cakto)
+    }
+  }, true);
 })();
 </script>
 

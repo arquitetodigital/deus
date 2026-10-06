@@ -963,6 +963,30 @@ body {
   text-align: center;
 }
 
+
+.offer-mockup {
+  margin: 18px auto 20px;
+  text-align: center;
+}
+.offer-mockup img {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  filter: drop-shadow(0 15px 35px rgba(0,0,0,0.45));
+  transition: transform 0.3s ease;
+}
+.offer-mockup img:hover {
+  transform: translateY(-4px);
+}
+.cover-placeholder {
+  border: 1px dashed rgba(201,162,39,0.4);
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(0,0,0,0.25);
+  margin-bottom: 22px;
+}
+
 </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -974,12 +998,13 @@ body {
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1622256505781426');
+    fbq('init', '2140862460014133');
     fbq('track', 'PageView');
+    fbq('track', 'ViewContent', { content_name: 'Deus no Meu Orçamento', value: 19.90, currency: 'BRL' });
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id=1622256505781426&ev=PageView&noscript=1"/>
+         src="https://www.facebook.com/tr?id=2140862460014133&ev=PageView&noscript=1"/>
   </noscript>
   <!-- End Meta Pixel Code -->
 </head>
@@ -1373,16 +1398,11 @@ body {
         <div class="price">R$ 9<small>,90</small></div>
         <p class="price-desc">Acesso imediato ao Guia Digital de 7 Dias.</p>
 
-        <ul>
-          <li>9 capítulos completos</li>
-          <li>Planilhas e exercícios</li>
-          <li>Checklists de ação</li>
-          <li>Reflexões e aplicações práticas</li>
-          <li>Orações dos capítulos</li>
-          <li>Plano prático de 90 dias</li>
-        </ul>
+        <div class="offer-mockup">
+          <img src="MOCKUP_DEUS.png" alt="Deus no Meu Orçamento - Digital">
+        </div>
 
-        <a href="javascript:void(0);" id="btn-digital-990" class="btn btn-gold" role="button">QUERO A VERSÃO DIGITAL</a>
+        <a href="#upgrade-popup" id="btn-digital-990" class="btn btn-gold" role="button">QUERO A VERSÃO DIGITAL</a>
       </article>
 
       <article class="price-card featured">
@@ -1401,7 +1421,12 @@ body {
           <li>Plano estruturado de 90 dias de restauração</li>
         </ul>
 
-        <a href="https://go.pepperpay.com.br/zflrt?oferta=completa_1990" class="btn btn-gold">QUERO A VERSÃO COMPLETA</a>
+        <div class="offer-mockup cover-placeholder">
+          <!-- ESPAÇO RESERVADO PARA A CAPA -->
+          <img src="capa.webp" alt="Deus no Meu Orçamento - Versão Completa">
+        </div>
+
+        <a href="https://pay.cakto.com.br/4nr5hg8" class="btn btn-gold cta-checkout" data-offer="principal" data-value="19.90">QUERO A VERSÃO COMPLETA</a>
       </article>
     
     <div class="trust-badges-bar">
@@ -1520,46 +1545,69 @@ body {
       <div class="new">R$ 17<small>,90</small></div>
     </div>
 
-    <a href="https://go.pepperpay.com.br/zflrt?oferta=completa_1790" id="modal-cta-1790" class="upgrade-btn-yes">
+    <a href="https://pay.cakto.com.br/3c9vkdg" id="modal-cta-1790" class="upgrade-btn-yes">
       SIM! QUERO A VERSÃO COMPLETA POR R$ 17,90
     </a>
 
-    <a href="https://go.pepperpay.com.br/zflrt" id="modal-cta-990" class="upgrade-btn-no">
+    <a href="https://pay.cakto.com.br/36mw2z7_1178246" id="modal-cta-990" class="upgrade-btn-no">
       Não, prefiro abrir mão dos bônus e ficar apenas com a básica por R$ 9,90 »
     </a>
   </div>
 </div>
 
+
 <script>
+// --- POPUP DE UPGRADE E INTENÇÃO DE SAÍDA (EXIT-INTENT) ---
 (function() {
   var popup = document.getElementById('upgrade-popup');
-  var btnDigital = document.getElementById('btn-digital-990');
   var closeBtn = document.getElementById('upgrade-close-btn');
+  var btnDigital = document.getElementById('btn-digital-990');
+  var hasShownExit = false;
 
-  if (btnDigital && popup) {
+  window.openUpgradePopup = function() {
+    if (popup) popup.classList.add('active');
+  };
+  window.closeUpgradePopup = function() {
+    if (popup) popup.classList.remove('active');
+  };
+
+  if (btnDigital) {
     btnDigital.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      popup.classList.add('active');
+      window.openUpgradePopup();
       return false;
     });
   }
 
-  if (closeBtn && popup) {
-    closeBtn.addEventListener('click', function() {
-      popup.classList.remove('active');
+  if (closeBtn) closeBtn.addEventListener('click', window.closeUpgradePopup);
+  if (popup) {
+    popup.addEventListener('click', function(e) {
+      if (e.target === popup) window.closeUpgradePopup();
     });
   }
 
-  // Fechar ao clicar fora da caixa
-  popup.addEventListener('click', function(e) {
-    if (e.target === popup) {
-      popup.classList.remove('active');
+  // Intenção de saída para Desktop (movimento do mouse para o topo da tela)
+  document.addEventListener('mouseleave', function(e) {
+    if (e.clientY <= 15 && !hasShownExit) {
+      hasShownExit = true;
+      window.openUpgradePopup();
     }
   });
+
+  // Interceptação de saída / voltar (Mobile e Popstate)
+  try {
+    history.pushState({ page: 1 }, '', '');
+    window.addEventListener('popstate', function(event) {
+      if (!hasShownExit) {
+        hasShownExit = true;
+        window.openUpgradePopup();
+        history.pushState({ page: 2 }, '', '');
+      }
+    });
+  } catch(e) {}
 })();
 </script>
-
 
 <script>
 (function() {
@@ -1580,7 +1628,7 @@ body {
       totalSeconds--;
       try { sessionStorage.setItem('dno_timer_sec', totalSeconds); } catch(e) {}
     } else {
-      totalSeconds = 14 * 60 + 59; // reinicia ciclo de escassez
+      totalSeconds = 14 * 60 + 59;
     }
   }
   updateTimer();
@@ -1590,12 +1638,18 @@ body {
 
 <script>
 (function() {
-  // --- CAPTURA E REPASSE DE UTMS, FBCLID, _FBP, _FBC ---
+  // --- CAPTURA E REPASSE DE UTMS, FBCLID, SRC, SCK PARA A CAKTO ---
   var params = new URLSearchParams(window.location.search);
-  var trackingKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'src', 'sck', 'fbclid'];
+  // Captura todos os parametros da URL (incluindo fbclid, gclid, clid, etc.)
+  var trackingKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'src', 'sck', 'fbclid', 'gclid', 'clid', 'ttclid'];
+  // Adiciona dinamicamente qualquer outro parametro presente na URL atual
+  params.forEach(function(val, key) {
+    if (trackingKeys.indexOf(key) === -1) {
+      trackingKeys.push(key);
+    }
+  });
   var storedParams = {};
 
-  // Recupera do storage ou lê da URL
   trackingKeys.forEach(function(key) {
     var val = params.get(key);
     if (val) {
@@ -1609,7 +1663,6 @@ body {
     }
   });
 
-  // Captura / constrói _fbc a partir de fbclid se existir
   function getCookie(name) {
     var m = document.cookie.match(new RegExp('(^|; )' + name + '=([^;]+)'));
     return m ? m[2] : null;
@@ -1622,7 +1675,6 @@ body {
   if (fbp) storedParams['_fbp'] = fbp;
   if (fbc) storedParams['_fbc'] = fbc;
 
-  // Garante sck / src
   if (!storedParams['sck'] && storedParams['utm_campaign']) {
     storedParams['sck'] = storedParams['utm_campaign'];
   }
@@ -1630,7 +1682,6 @@ body {
     storedParams['src'] = storedParams['utm_source'];
   }
 
-  // Decora links de checkout ao clicar ou carregar
   function decorateUrl(urlStr) {
     if (!urlStr || urlStr.indexOf('http') !== 0) return urlStr;
     try {
@@ -1646,26 +1697,60 @@ body {
     }
   }
 
-  function decorateAllCheckoutLinks() {
-    var links = document.querySelectorAll('a[href]');
+  function decorateAllLinks() {
+    var links = document.querySelectorAll('a[href*="pay.cakto.com.br"]');
     links.forEach(function(a) {
-      var href = a.getAttribute('href');
-      if (href && (href.indexOf('pepperpay.com.br') !== -1 || href.indexOf('cakto.com.br') !== -1 || href.indexOf('kiwify.com.br') !== -1 || href.indexOf('hotmart.com') !== -1)) {
-        a.href = decorateUrl(href);
-      }
+      a.href = decorateUrl(a.href);
     });
   }
+  decorateAllLinks();
 
-  // Executa na carga e em cliques
-  decorateAllCheckoutLinks();
+  // --- DISPARO DE INITIATECHECKOUT BLINDADO CONTRA RACE CONDITION ---
   document.addEventListener('click', function(e) {
     var a = e.target.closest('a');
     if (!a) return;
-    var href = a.getAttribute('href');
-    if (href && (href.indexOf('pepperpay.com.br') !== -1 || href.indexOf('cakto.com.br') !== -1 || href.indexOf('kiwify.com.br') !== -1 || href.indexOf('hotmart.com') !== -1)) {
-      a.href = decorateUrl(a.href);
-      // NENHUM InitiateCheckout aqui: tracking de IC fica 100% nativo no checkout (Cakto)
+    if (a.id === 'btn-digital-990' || (a.getAttribute('href') && a.getAttribute('href').indexOf('#upgrade-popup') !== -1)) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (typeof window.openUpgradePopup === 'function') {
+        window.openUpgradePopup();
+      }
+      return false;
     }
+    var href = a.getAttribute('href');
+    if (!href || href.indexOf('pay.cakto.com.br') === -1) return;
+
+    var targetUrl = decorateUrl(a.href);
+    a.href = targetUrl;
+
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) {
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: 'Deus no Meu Orçamento',
+          currency: 'BRL'
+        });
+      }
+      return;
+    }
+
+    e.preventDefault();
+
+    var val = 19.90;
+    if (targetUrl.indexOf('36mw2z7_1178246') !== -1) val = 9.90;
+    else if (targetUrl.indexOf('3c9vkdg') !== -1) val = 17.90;
+    else if (targetUrl.indexOf('4nr5hg8') !== -1) val = 19.90;
+
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Deus no Meu Orçamento',
+        value: val,
+        currency: 'BRL'
+      });
+    }
+
+    setTimeout(function() {
+      window.location.href = targetUrl;
+    }, 280);
   }, true);
 })();
 </script>

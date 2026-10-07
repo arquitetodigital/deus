@@ -7,7 +7,7 @@
   <meta name="description" content="Um método prático para organizar suas dívidas, controlar seus gastos e construir um plano de recuperação financeira fundamentado nos ensinamentos da Bíblia.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Meta Pixel Code -->
   <script>
@@ -46,24 +46,26 @@
 
   <style>
     :root {
-      --green-dark: #0f1c15;
-      --green: #14281e;
-      --green-card: #1a3327;
-      --green-border: rgba(201,162,39,0.22);
-      --cream-bg: #f9f7f2;
+      --green-dark: #0a150f;
+      --green: #112218;
+      --green-card: #162b20;
+      --green-border: rgba(212,175,55,0.25);
+      --cream-bg: #f8f6f0;
       --cream-card: #ffffff;
-      --cream-text: #2a332c;
-      --cream-muted: #5e6b62;
-      --cream-border: #e6e2d8;
-      --gold: #d4af37;
-      --gold-light: #f3e5ab;
-      --gold-dark: #997819;
-      --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f9e8a2 50%, #b8860b 100%);
+      --cream-text: #1d2620;
+      --cream-muted: #4e5c52;
+      --cream-border: #e2ded4;
+      --gold: #f2c94c;
+      --gold-light: #fef08a;
+      --gold-dark: #b8860b;
+      --gold-gradient: linear-gradient(180deg, #ffe57f 0%, #f5b82e 50%, #d49511 100%);
+      --gold-glow: 0 0 25px rgba(242,201,76,0.35);
+      --font-impact: 'Barlow Condensed', sans-serif;
       --font-title: 'Cinzel', Georgia, serif;
       --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      --shadow-sm: 0 4px 12px rgba(0,0,0,0.08);
-      --shadow-md: 0 12px 30px rgba(0,0,0,0.18);
-      --shadow-lg: 0 20px 50px rgba(0,0,0,0.35);
+      --shadow-sm: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-md: 0 12px 30px rgba(0,0,0,0.25);
+      --shadow-lg: 0 20px 50px rgba(0,0,0,0.45);
       --container: 1040px;
     }
 
@@ -153,28 +155,33 @@
       padding: 6px 0;
     }
     .hero h1 {
-      font-family: var(--font-title);
-      font-size: clamp(26px, 3.2vw, 40px);
-      line-height: 1.2;
-      font-weight: 700;
+      font-family: var(--font-impact);
+      font-size: clamp(34px, 4.8vw, 54px);
+      line-height: 1.05;
+      font-weight: 900;
       color: #ffffff;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.6);
     }
     .hero h1 span {
       color: var(--gold-light);
       display: block;
-      font-size: clamp(18px, 2.3vw, 26px);
+      font-size: clamp(19px, 2.4vw, 24px);
       font-weight: 600;
       line-height: 1.35;
-      margin-top: 6px;
+      margin-top: 10px;
       font-family: var(--font-body);
+      text-transform: none;
+      letter-spacing: normal;
+      text-shadow: none;
     }
     .hero-desc {
-      font-size: 15px;
-      color: #cad6cc;
-      line-height: 1.55;
-      margin-bottom: 18px;
+      font-size: 16.5px;
+      color: #dbe5dc;
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
     .hero-desc strong {
       color: #fff;
@@ -188,10 +195,10 @@
     .hero-checklist-item {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 13.5px;
-      color: #e5ede7;
-      font-weight: 600;
+      gap: 10px;
+      font-size: 15px;
+      color: #f0f5f1;
+      font-weight: 700;
     }
     .hero-price-anchor {
       display: inline-flex;
@@ -235,7 +242,19 @@
     .btn-gold {
       background: var(--gold-gradient);
       color: #111e15;
-      box-shadow: 0 8px 24px rgba(212,175,55,0.35);
+      font-family: var(--font-impact);
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 50px;
+      padding: 17px 32px;
+      box-shadow: 0 10px 30px rgba(242,201,76,0.4), inset 0 1px 0 rgba(255,255,255,0.6);
+      border: 1px solid #ffd700;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 38px rgba(242,201,76,0.6), inset 0 1px 0 rgba(255,255,255,0.8);
     }
     .btn-gold:hover {
       transform: translateY(-2px);
@@ -294,19 +313,44 @@
       margin: 0 auto 36px;
     }
     .section-head h2 {
-      font-family: var(--font-title);
-      font-size: clamp(22px, 2.5vw, 32px);
-      line-height: 1.25;
+      font-family: var(--font-impact);
+      font-size: clamp(28px, 3.8vw, 44px);
+      line-height: 1.1;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
       margin-bottom: 12px;
     }
-    .section.dark .section-head h2 { color: #ffffff; }
-    .section.cream .section-head h2 { color: #16241b; }
-    .section-head p {
-      font-size: 15px;
-      line-height: 1.6;
+    .section.dark .section-head h2 {
+      font-family: var(--font-impact);
+      font-size: clamp(28px, 3.8vw, 44px);
+      line-height: 1.1;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
     }
-    .section.dark .section-head p { color: #b1bdb4; }
-    .section.cream .section-head p { color: var(--cream-muted); }
+    .section.cream .section-head h2 {
+      font-family: var(--font-impact);
+      font-size: clamp(28px, 3.8vw, 44px);
+      line-height: 1.1;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+    .section-head p {
+      font-size: 16.5px;
+      line-height: 1.65;
+    }
+    .section.dark .section-head p {
+      font-size: 16.5px;
+      line-height: 1.65;
+    }
+    .section.cream .section-head p {
+      font-size: 16.5px;
+      line-height: 1.65;
+    }
 
     /* DOBRA 2: CONEXÃO EMOCIONAL + BIG IDEA */
     .emotional-card {
@@ -329,15 +373,15 @@
       color: #fff;
     }
     .big-idea-quote {
-      background: rgba(212,175,55,0.08);
-      border-left: 4px solid var(--gold);
-      padding: 16px 20px;
-      border-radius: 0 8px 8px 0;
-      font-family: var(--font-title);
-      font-size: 17px;
+      background: rgba(242,201,76,0.1);
+      border-left: 5px solid var(--gold);
+      padding: 20px 24px;
+      border-radius: 0 10px 10px 0;
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 700;
       color: var(--gold-light);
-      line-height: 1.45;
-      letter-spacing: 0.02em;
+      line-height: 1.5;
     }
 
     /* DOBRA 3: O MECANISMO (COM FOTO DO GUIA capa2.webp) */
@@ -359,10 +403,13 @@
       border: 1px solid rgba(212,175,55,0.25);
     }
     .intro-copy h2 {
-      font-family: var(--font-title);
-      font-size: clamp(22px, 2.5vw, 32px);
-      line-height: 1.25;
-      margin-bottom: 12px;
+      font-family: var(--font-impact);
+      font-size: clamp(28px, 3.8vw, 42px);
+      line-height: 1.15;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
       color: #fff;
     }
     .intro-copy p {
@@ -384,18 +431,19 @@
       padding: 14px 18px;
     }
     .m-step h4 {
-      font-size: 15px;
+      font-size: 17px;
       color: var(--gold-light);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 8px;
+      font-weight: 800;
     }
     .m-step p {
-      font-size: 13.5px;
-      color: #c0ccc2;
+      font-size: 15px;
+      color: #d1ddd3;
       margin: 0;
-      line-height: 1.5;
+      line-height: 1.55;
     }
     .tagline-bar {
       text-align: center;
@@ -440,15 +488,15 @@
       flex-shrink: 0;
     }
     .deliv-info h3 {
-      font-size: 16px;
+      font-size: 18px;
       color: #17281d;
-      margin-bottom: 4px;
-      font-weight: 700;
+      margin-bottom: 6px;
+      font-weight: 800;
     }
     .deliv-info p {
-      font-size: 13px;
+      font-size: 14.5px;
       color: var(--cream-muted);
-      line-height: 1.5;
+      line-height: 1.55;
       margin: 0;
     }
 
@@ -463,17 +511,20 @@
       text-align: center;
     }
     .objection-card h3 {
-      font-family: var(--font-title);
-      font-size: clamp(20px, 2.4vw, 28px);
+      font-family: var(--font-impact);
+      font-size: clamp(26px, 3.6vw, 38px);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
       color: #fff;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
     .objection-card p {
-      font-size: 15px;
-      color: #c7d4ca;
+      font-size: 16.5px;
+      color: #d5e2d8;
       line-height: 1.65;
       margin-bottom: 16px;
-      max-width: 720px;
+      max-width: 740px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -579,17 +630,22 @@
       margin-bottom: 6px;
     }
     .price-card h3 {
-      font-size: 20px;
+      font-family: var(--font-impact);
+      font-size: 24px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
       color: #ffffff;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .price-card .price {
-      font-family: var(--font-title);
-      font-size: 42px;
-      font-weight: 700;
+      font-family: var(--font-impact);
+      font-size: 48px;
+      font-weight: 900;
       color: #fff;
       line-height: 1;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
     }
     .price-card .price small {
       font-size: 20px;
@@ -626,13 +682,13 @@
       flex-grow: 1;
     }
     .price-card ul li {
-      font-size: 13px;
-      color: #dbe3dc;
-      padding: 7px 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 14.5px;
+      color: #e2ebe4;
+      padding: 8px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .price-card ul li::before {
       content: "✓";
@@ -671,19 +727,22 @@
       border-bottom: 1px solid var(--green-border);
     }
     .final h2 {
-      font-family: var(--font-title);
-      font-size: clamp(22px, 2.6vw, 34px);
+      font-family: var(--font-impact);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
       color: #fff;
-      max-width: 760px;
-      margin: 10px auto 14px;
-      line-height: 1.3;
+      max-width: 780px;
+      margin: 10px auto 16px;
+      line-height: 1.15;
     }
     .final p {
-      font-size: 15.5px;
-      color: #c3cec5;
-      max-width: 620px;
-      margin: 0 auto 24px;
-      line-height: 1.6;
+      font-size: 17px;
+      color: #d1ded4;
+      max-width: 660px;
+      margin: 0 auto 26px;
+      line-height: 1.65;
     }
 
     /* FAQ */
@@ -863,17 +922,79 @@
 
     /* RESPONSIVIDADE MOBILE */
     @media (max-width: 860px) {
+      .hero { padding: 36px 0 44px; }
       .hero-grid { grid-template-columns: 1fr; gap: 24px; text-align: center; }
-      .hero-cover { order: -1; }
-      .hero-cover img { max-width: 270px; }
-      .hero h1 { font-size: 26px; }
-      .hero h1 span { font-size: 18px; }
-      .hero-checklist { grid-template-columns: 1fr; text-align: left; max-width: 300px; margin: 0 auto 18px; }
-      .intro-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-cover { order: -1; margin-bottom: 4px; }
+      .hero-cover img { max-width: 290px; }
+      .hero h1 {
+        font-size: 34px;
+        line-height: 1.1;
+      }
+      .hero h1 span {
+        font-size: 18px;
+        line-height: 1.4;
+      }
+      .hero-desc {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+      .hero-checklist {
+        grid-template-columns: 1fr;
+        text-align: left;
+        max-width: 330px;
+        margin: 0 auto 20px;
+        gap: 10px;
+      }
+      .hero-checklist-item {
+        font-size: 15px;
+      }
+      .hero-price-anchor {
+        font-size: 14px;
+        padding: 8px 16px;
+        margin-bottom: 18px;
+      }
+      .hero-price-anchor strong {
+        font-size: 19px;
+      }
+      .btn {
+        font-size: 19px;
+        padding: 18px 24px;
+        width: 100%;
+      }
+      .cta-subtext {
+        font-size: 13px;
+      }
+      .section { padding: 46px 0; }
+      .section-head h2 { font-size: 30px; }
+      .section-head p { font-size: 16px; }
+      .emotional-card { padding: 26px 20px; }
+      .emotional-text { font-size: 16px; }
+      .big-idea-quote { font-size: 17px; padding: 16px 18px; }
+      .intro-grid { grid-template-columns: 1fr; text-align: center; gap: 26px; }
       .intro-cover { order: -1; }
-      .intro-cover img { max-width: 280px; }
-      .testimonials, .pricing-wrap { grid-template-columns: 1fr; }
-      .trust-badges-bar { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .intro-cover img { max-width: 290px; }
+      .intro-copy h2 { font-size: 28px; }
+      .intro-copy p { font-size: 16px; }
+      .tagline-bar { font-size: 13px; padding: 12px 10px; }
+      .deliverables-grid { grid-template-columns: 1fr; gap: 14px; }
+      .deliv-card { padding: 18px; }
+      .deliv-info h3 { font-size: 17px; }
+      .deliv-info p { font-size: 14.5px; }
+      .objection-card { padding: 28px 20px; }
+      .objection-card h3 { font-size: 26px; }
+      .objection-card p { font-size: 16px; }
+      .testimonials, .pricing-wrap { grid-template-columns: 1fr; gap: 22px; }
+      .testimonial { padding: 22px 18px; }
+      .testimonial blockquote { font-size: 15px; }
+      .price-card { padding: 26px 20px; }
+      .price-card h3 { font-size: 22px; }
+      .price-card .price { font-size: 44px; }
+      .price-card ul li { font-size: 14.5px; }
+      .trust-badges-bar { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .final h2 { font-size: 30px; }
+      .final p { font-size: 16px; }
+      details summary { font-size: 16px; }
+      details p { font-size: 15px; }
     }
   </style>
 </head>
@@ -988,7 +1109,7 @@
     <div class="container">
       <div class="section-head">
         <div class="kicker">UM MÉTODO. UM PLANO. UM PRIMEIRO PASSO.</div>
-        <h2>O que você recebe ao entrar no Deus no Meu Orçamento</h2>
+        <h2>O que você recebe ao entrar no Método Deus no Meu Orçamento</h2>
         <p>Você não precisa de mais um conteúdo sobre dinheiro que vai ler e esquecer. Precisa de ferramentas para começar a agir.</p>
       </div>
 
